@@ -3,8 +3,8 @@ import requests
 import json
 import openai
 
-openai.api_key = "XXXX"
-openai.api_base =  "https://gpt-playground-us.openai.azure.com/" # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
+openai.api_key = "ce0ffef736fd4531809bceb834768d68"
+openai.api_base = "https://gpt-playground-us.openai.azure.com/" # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
 openai.api_type = 'azure'
 openai.api_version = '2022-12-01' # this may change in the future
 

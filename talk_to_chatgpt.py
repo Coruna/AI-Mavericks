@@ -3,8 +3,9 @@ import requests
 import json
 import openai
 
+
 openai.api_key = "ce0ffef736fd4531809bceb834768d68"
-openai.api_base =  "https://XXXX.openai.azure.com/" # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
+openai.api_base = "https://gpt-playground-us.openai.azure.com/" # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
 openai.api_type = 'azure'
 openai.api_version = '2022-12-01' # this may change in the future
 
@@ -22,8 +23,6 @@ while True:
     print(answer)
     with open("output.txt", "a") as f:
         print(answer, file=f)
-
-
 
 #It is always a number between 0 and 1.
 #A temperature of 0 means the responses will be very straightforward, almost deterministic (meaning you almost always get the same response to a given prompt)

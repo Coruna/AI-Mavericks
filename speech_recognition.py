@@ -23,7 +23,8 @@ def recognize_from_microphone():
         if cancellation_details.reason == speechsdk.CancellationReason.Error:
             print("Error details: {}".format(cancellation_details.error_details))
             print("Did you set the speech resource key and region values?")
-    with open("speech_recognition_output.txt", "a") as f:
-        print(speech_recognition_result.text, file=f)
+    print(type(speech_recognition_result.text))
+    with open('speech_recognition_output.json', 'w') as file:
+        json.dump(speech_recognition_result.text, file)
 
 recognize_from_microphone()
