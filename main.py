@@ -38,4 +38,13 @@ response = openai.ChatCompletion.create(
 )
 
 # print(response)
-print(response['choices'][0]['message']['content'])
+#print(response['choices'][0]['message']['content'])
+
+data = response['choices'][0]['message']['content']
+data = data.replace('\\', '')
+print(data)
+
+with open('assessment.json', 'w') as file:
+    json.dump(data, file)
+
+
