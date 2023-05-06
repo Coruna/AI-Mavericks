@@ -2,15 +2,24 @@ import json
 import matplotlib.pyplot as plt
 
 # The JSON string
-data = "{\"Problem Solving Skills\":\"10\", \"Friendliness\": \"9\", \"Professionalism\": \"10\",\"Understandability\":\"10\", \"Tips\":[\"Excellent job!\", \"Keep up the good work!\"] }"
 
-print(data)
-# Parse the JSON into a dictionary
+with open('assessment.json') as user_file:
+  file_contents = user_file.read()
+
+#"{"Problem Solving Skills":"10", "Friendliness": "9", "Professionalism": "10",
+# "Understandability":"10", "Tips":["Excellent job! You handled the situation p
+# rofessionally and effectively.", "Continue to provide clear and concise instruc
+# tions to ensure the customer feels confident in the process."]}"
+#Eliminate the first and the last ""
+
+data = file_contents.replace('\\', '')
+data = data[1:-1]
+
 parsed_data = json.loads(data)
-
 # Extract the scalar values and store them in a dictionary
 scalar_data = {}
 for key in parsed_data:
+    print(key)
     if key != "Tips":
         scalar_data[key] = int(parsed_data[key])
 
