@@ -1,12 +1,12 @@
 import os
 import azure.cognitiveservices.speech as speechsdk
 import json
-import json
 import string
 import openai
 import nltk
 from nltk.corpus import stopwords
 import matplotlib.pyplot as plt
+import tkinter
 #--------------OPENAI CONFIG--------------------
 openai.api_type = "azure"
 openai.api_base = "https://gpt-playground-us.openai.azure.com/"
@@ -17,6 +17,7 @@ global speechdata
 speechdata = "speech_recognition_output.json" #cleaned data from voice input
 masterjson = "conversation.json" #master json
 answ_chatgpt=""
+assessment = "assessment.json" #needed for the data visualisation
 
 def recognize_from_microphone():
     # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
@@ -61,7 +62,6 @@ def pre_processing():
 
     with open('cleaned_text.json', 'w') as file:
         json.dump(cleaned_text, file)
-    recognize_from_microphone()
 
 def talk_to_chatgpt(masterjson):
     with open(masterjson) as json_file:
@@ -74,6 +74,15 @@ def talk_to_chatgpt(masterjson):
     global answ_chatgpt
     answ_chatgpt = (response['choices'][0]['message']['content'])
     print(answ_chatgpt)
+
+    data = response['choices'][0]['message']['content']
+    data = data.replace('\\', '')
+    print(data)
+
+    with open('assessment.json', 'w') as file:
+        json.dump(data, file)
+
+
 
 def add_speech_to_json (speechdata, masterjson):
     with open(speechdata) as json_file:
@@ -105,21 +114,15 @@ def add_answ_chatgpt_masterjson(answ_chatgpt):
         # convert back to json.
         json.dump(file_data, file, indent = 4)
 
-def before_math(answ_chatgpt):
-    with open('assessment.json', 'w') as file:
-        json.dump(answ_chatgpt, file)
+def doing_some_math():
 
-
-
-def doing_some_math(masterjson):
-
-    with open(masterjson) as user_file:
+    with open('assessment.json') as user_file:
         file_contents = user_file.read()
 
-    data = file_contents.replace('\\', '')
-    data = data[1:-1]
-
-    parsed_data = json.loads(data)
+    #data = file_contents.replace('\\', '')
+    #data = data[1:-1]
+    parsed_data = json.loads(user_file)
+    
 # Extract the scalar values and store them in a dictionary
     scalar_data = {}
     for key in parsed_data:
@@ -145,11 +148,10 @@ def doing_some_math(masterjson):
 #recognize_from_microphone()
 #print("Lets start with the Pre-Processing!")
 #pre_processing()
-#print("After Pre Processing")
 #add_speech_to_json(speechdata, masterjson)
-#print("Lets go to Buddy ChatGPT!)")
-#talk_to_chatgpt(masterjson)
-#print("And CLean Up a little")
-#add_answ_chatgpt_masterjson(answ_chatgpt)
-before_math(answ_chatgpt)
-doing_some_math(masterjson)
+print("Unserinput added to masterjson")
+talk_to_chatgpt(masterjson)
+add_answ_chatgpt_masterjson(answ_chatgpt)
+print("CGPTinput added to masterjson")
+#tkinter.messagebox.askquestion(title=None, message=answ_chatgpt)
+doing_some_math()

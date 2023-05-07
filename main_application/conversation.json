@@ -25,30 +25,26 @@
     },
     {
         "role": "assistant",
-        "content": "{\"Problem Solving Skills\":\"9\", \"Friendliness\": \"10\", \"Professionalism\": \"10\",\"Understandability\":\"10\", \"Tips\":[\"Excellent job!\", \"Keep providing detailed and step-by-step instructions to help the customer\", \"Let the customer know you're there to help and provide support throughout the process\", \"Make sure to emphasize the importance of account security to the customer.\"]"
+        "content": "{\"Problem Solving Skills\":\"9\", \"Friendliness\": \"10\", \"Professionalism\": \"10\",\"Understandability\":\"10\", \"Tips\":[\"Great job on being clear and professional in explaining the situation and the necessary steps to take\",\"Continue to show empathy towards the customer's situation even when presenting the steps they need to take\",\"Provide detailed guidance throughout the entire process to help the customer feel supported and confident in resolving the issue\"]"
     },
     {
         "role": "user",
-        "content": "hello john customer support help"
+        "content": "Hi there, can you tell me a bit more about the issue when they did start happen? OK, let me take a look at your computer remotely. Can you please download the remote desktop software from our website and run it? Great. Can you give me the access code that's displayed on your screen? I need that to connect to your computer. It looks like there are some malware and adware programs on your computer that are slowing it down. I'm going to remove them for you now."
     },
     {
         "role": "assistant",
-        "content": "I'm sorry, I don't understand the context of your message or the issue you're facing. Could you please provide me with more information so that I can assist you better?"
-    },
-    {
-        "role": "user",
-        "content": "hello john customer support help"
+        "content": "{\"Problem Solving Skills\":\"9\", \"Friendliness\": \"8\", \"Professionalism\": \"9\",\"Understandability\":\"10\", \"Tips\":[\"Good job on asking questions to understand the issue and offering to remotely access the computer for assistance\",\"Be sure to explain any technical steps or jargon in a way that the customer can easily understand\",\"Continue to provide clear and detailed guidance throughout the process to help the customer feel supported\"]"
     },
     {
         "role": "assistant",
-        "content": "I'm sorry, I still don't understand the context of your message or the issue you're facing. If you can provide me with more information, I'll be happy to assist you."
-    },
-    {
-        "role": "user",
-        "content": "Hello, Thank you for reaching out to our customer support. My name is John and I'll be happy to assist you today. I understand you're having an issue with your account. Let me take a look here and see what I can do to help you. Based on information you've provided, it looks like your account has been temporarily suspended due to a security concern. In order to reactivate your account, we need to go through a few security verification steps. I apologize for any inconvenience this may cause, but it's for the protection of your account. I can guide you through the verification process."
+        "content": "{\"Problem Solving Skills\":\"9\", \"Friendliness\": \"8\", \"Professionalism\": \"9\",\"Understandability\":\"10\", \"Tips\":[\"Good job on asking questions to understand the issue and offering to remotely access the computer for assistance\",\"Be sure to explain any technical steps or jargon in a way that the customer can easily understand\",\"Continue to provide clear and detailed guidance throughout the process to help the customer feel supported\"]}"
     },
     {
         "role": "assistant",
-        "content": "{\"Problem Solving Skills\":\"8\", \"Friendliness\": \"9\", \"Professionalism\": \"9\",\"Understandability\":\"9\", \"Tips\":[\"Great job providing instructions for reactivating the account\", \"Consider providing more detailed information about the security concern or reason for the suspension\", \"Maintain a calm and patient demeanor while assisting the customer through the verification process\", \"Let the customer know you're there for support throughout the process\"]"
+        "content": "{\"Problem Solving Skills\":\"9\", \"Friendliness\": \"8\", \"Professionalism\": \"9\",\"Understandability\":\"10\", \"Tips\":[\"Good job on asking questions to understand the issue and offering to remotely access the computer for assistance\",\"Be sure to explain any technical steps or jargon in a way that the customer can easily understand\",\"Continue to provide clear and detailed guidance throughout the process to help the customer feel supported\"]}"
+    },
+    {
+        "role": "assistant",
+        "content": "{\"Problem Solving Skills\":\"9\", \"Friendliness\": \"8\", \"Professionalism\": \"9\",\"Understandability\":\"10\", \"Tips\":[\"Good job on asking questions to understand the issue and offering to remotely access the computer for assistance\",\"Be sure to explain any technical steps or jargon in a way that the customer can easily understand\",\"Continue to provide clear and detailed guidance throughout the process to help the customer feel supported\"]}"
     }
 ]
