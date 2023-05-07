@@ -2,7 +2,6 @@ import json
 import matplotlib.pyplot as plt
 
 # The JSON string
-
 with open('assessment.json') as user_file:
   file_contents = user_file.read()
 
@@ -14,6 +13,7 @@ with open('assessment.json') as user_file:
 
 data = file_contents.replace('\\', '')
 data = data[1:-1]
+print(data)
 
 parsed_data = json.loads(data)
 # Extract the scalar values and store them in a dictionary
