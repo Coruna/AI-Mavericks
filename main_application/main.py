@@ -76,16 +76,15 @@ def talk_to_chatgpt(masterjson):
     with open(masterjson) as json_file:
         data = json.load(json_file)
 
-    print("Done read json file")
     response = openai.ChatCompletion.create(
         engine="chatgpt",  # engine = "deployment_name".
         messages=data
     )
 
-    print("Done complete response")
+   
     global answ_chatgpt
     answ_chatgpt = (response['choices'][0]['message']['content'])
-    print(answ_chatgpt)
+  
 
     # add assessment file for visualization
     f = open(assessment, "w")
@@ -125,16 +124,12 @@ def add_answ_chatgpt_masterjson(answ_chatgpt):
         json.dump(file_data, file, indent=4)
 
 
-def doing_some_math():
-    print("In doing some math")
+def visualize():
     # Parse the data BUT without the cleaning!
     with open('assessment.json') as user_file:
         data = user_file.read()
 
-    print("done open assessment")
     parsed_data = json.loads(data)
-
-    print("done parsed_data")
 
     # Extract the scalar values and store them in a dictionary
     scalar_data = {}
@@ -167,4 +162,4 @@ talk_to_chatgpt(masterjson)
 add_answ_chatgpt_masterjson(answ_chatgpt)
 print("CGPTinput added to masterjson")
 #tkinter.messagebox.askquestion(title=None, message=answ_chatgpt)
-doing_some_math()
+visualize()
