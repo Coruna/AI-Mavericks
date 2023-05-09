@@ -10,13 +10,13 @@ import matplotlib.pyplot as plt
 import tkinter
 
 # --------------OPENAI CONFIG--------------------
-openai.api_type = "azure"
-openai.api_base = "https://gpt-playground-us.openai.azure.com/"
-openai.api_version = "2023-03-15-preview"
-openai.api_key = "ce0ffef736fd4531809bceb834768d68"
+openai.api_type = "xxxx"
+openai.api_base = "xxxx"
+openai.api_version = "xxxx"
+openai.api_key = "xxxx"
 # --------------AZURE VOICE REC CONFIG-------------------------
-speech_key = "e02bab2445bd4aeb8150da88d49d1737"
-speech_region = "eastus"
+speech_key = "xxxx"
+speech_region = "xxxx"
 # --------------------NEEDED GLOBAL VARIABLES------------------------
 global speechdata
 speechdata = "speech_recognition_output.json"  # cleaned data from voice input
