@@ -1,38 +1,34 @@
 import os
 import azure.cognitiveservices.speech as speechsdk
 import json
-<<<<<<< HEAD
-=======
 import json
->>>>>>> bc32a54439c5fa8cbb87b706e76257209e155bdf
 import string
 import openai
 import nltk
 from nltk.corpus import stopwords
 import matplotlib.pyplot as plt
-<<<<<<< HEAD
 import tkinter
-=======
->>>>>>> bc32a54439c5fa8cbb87b706e76257209e155bdf
-#--------------OPENAI CONFIG--------------------
+
+# --------------OPENAI CONFIG--------------------
 openai.api_type = "azure"
 openai.api_base = "https://gpt-playground-us.openai.azure.com/"
 openai.api_version = "2023-03-15-preview"
 openai.api_key = "ce0ffef736fd4531809bceb834768d68"
-#--------------------NEEDED GLOBAL VARIABLES------------------------
-global speechdata 
-speechdata = "speech_recognition_output.json" #cleaned data from voice input
-masterjson = "conversation.json" #master json
-answ_chatgpt=""
-<<<<<<< HEAD
-assessment = "assessment.json" #needed for the data visualisation
-=======
->>>>>>> bc32a54439c5fa8cbb87b706e76257209e155bdf
+# --------------AZURE VOICE REC CONFIG-------------------------
+speech_key = "e02bab2445bd4aeb8150da88d49d1737"
+speech_region = "eastus"
+# --------------------NEEDED GLOBAL VARIABLES------------------------
+global speechdata
+speechdata = "speech_recognition_output.json"  # cleaned data from voice input
+masterjson = "conversation.json"  # master json
+answ_chatgpt = ""
+assessment = "assessment.json"  # needed for the data visualisation
+
 
 def recognize_from_microphone():
     # This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    speech_config = speechsdk.SpeechConfig(subscription="e02bab2445bd4aeb8150da88d49d1737", region="eastus")
-    speech_config.speech_recognition_language="en-US"
+    speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=speech_region)
+    speech_config.speech_recognition_language = "en-US"
 
     audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
     speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
@@ -54,74 +50,71 @@ def recognize_from_microphone():
     with open('speech_recognition_output.json', 'w') as file:
         json.dump(speech_recognition_result.text, file)
 
+
 def pre_processing():
-# Load the JSON file
+    # Load the JSON file
     with open('speech_recognition_output.json') as file:
         data = json.load(file)
 
-# Tokenize the text
+    # Tokenize the text
     tokens = nltk.word_tokenize(data)
 
-# Remove stop words and punctuation, and turn all letters to lowercase
+    # Remove stop words and punctuation, and turn all letters to lowercase
     stop_words = set(stopwords.words('english'))
     punctuations = set(string.punctuation)
-    filtered_tokens = [token.lower() for token in tokens if token.lower() not in stop_words and token not in punctuations]
+    filtered_tokens = [token.lower() for token in tokens if
+                       token.lower() not in stop_words and token not in punctuations]
 
-# Join the tokens to form the cleaned text
+    # Join the tokens to form the cleaned text
     cleaned_text = ' '.join(filtered_tokens)
 
     with open('cleaned_text.json', 'w') as file:
         json.dump(cleaned_text, file)
-<<<<<<< HEAD
-=======
-    recognize_from_microphone()
->>>>>>> bc32a54439c5fa8cbb87b706e76257209e155bdf
+
 
 def talk_to_chatgpt(masterjson):
     with open(masterjson) as json_file:
         data = json.load(json_file)
 
+    print("Done read json file")
     response = openai.ChatCompletion.create(
-        engine="chatgpt", # engine = "deployment_name".
-     messages=data
+        engine="chatgpt",  # engine = "deployment_name".
+        messages=data
     )
+
+    print("Done complete response")
     global answ_chatgpt
     answ_chatgpt = (response['choices'][0]['message']['content'])
     print(answ_chatgpt)
 
-<<<<<<< HEAD
-    data = response['choices'][0]['message']['content']
-    data = data.replace('\\', '')
-    print(data)
-
-    with open('assessment.json', 'w') as file:
-        json.dump(data, file)
+    # add assessment file for visualization
+    f = open(assessment, "w")
+    f.write(answ_chatgpt)
+    f.close()
 
 
-
-=======
->>>>>>> bc32a54439c5fa8cbb87b706e76257209e155bdf
-def add_speech_to_json (speechdata, masterjson):
+def add_speech_to_json(speechdata, masterjson):
     with open(speechdata) as json_file:
         data = json.load(json_file)
     new_data = {"role": "user", "content": data}
 
     def write_json(new_data, masterjson):
-        with open(masterjson,'r+') as file:
-          # First we load existing data into a dict.
+        with open(masterjson, 'r+') as file:
+            # First we load existing data into a dict.
             file_data = json.load(file)
-        # Join new_data with file_data inside emp_details
+            # Join new_data with file_data inside emp_details
             file_data.append(new_data)
-        # Sets file's current position at offset.
+            # Sets file's current position at offset.
             file.seek(0)
-        # convert back to json.
-            json.dump(file_data, file, indent = 4)
-     
+            # convert back to json.
+            json.dump(file_data, file, indent=4)
+
     write_json(new_data, masterjson)
+
 
 def add_answ_chatgpt_masterjson(answ_chatgpt):
     new_data = {"role": "assistant", "content": answ_chatgpt}
-    with open(masterjson,'r+') as file:
+    with open(masterjson, 'r+') as file:
         # First we load existing data into a dict.
         file_data = json.load(file)
         # Join new_data with file_data inside emp_details
@@ -129,43 +122,28 @@ def add_answ_chatgpt_masterjson(answ_chatgpt):
         # Sets file's current position at offset.
         file.seek(0)
         # convert back to json.
-        json.dump(file_data, file, indent = 4)
+        json.dump(file_data, file, indent=4)
 
-<<<<<<< HEAD
+
 def doing_some_math():
-
+    print("In doing some math")
+    # Parse the data BUT without the cleaning!
     with open('assessment.json') as user_file:
-        file_contents = user_file.read()
+        data = user_file.read()
 
-    #data = file_contents.replace('\\', '')
-    #data = data[1:-1]
-    parsed_data = json.loads(user_file)
-    
-=======
-def before_math(answ_chatgpt):
-    with open('assessment.json', 'w') as file:
-        json.dump(answ_chatgpt, file)
-
-
-
-def doing_some_math(masterjson):
-
-    with open(masterjson) as user_file:
-        file_contents = user_file.read()
-
-    data = file_contents.replace('\\', '')
-    data = data[1:-1]
-
+    print("done open assessment")
     parsed_data = json.loads(data)
->>>>>>> bc32a54439c5fa8cbb87b706e76257209e155bdf
-# Extract the scalar values and store them in a dictionary
+
+    print("done parsed_data")
+
+    # Extract the scalar values and store them in a dictionary
     scalar_data = {}
     for key in parsed_data:
         print(key)
         if key != "Tips":
             scalar_data[key] = int(parsed_data[key])
 
-# Create a bar chart for the scalar values
+    # Create a bar chart for the scalar values
     fig, ax = plt.subplots()
     ax.bar(scalar_data.keys(), scalar_data.values())
     ax.set_ylim(0, 10)
@@ -173,31 +151,20 @@ def doing_some_math(masterjson):
     ax.set_title('Performance Ratings')
     plt.show()
 
-# Print the list of tips
+    # Print the list of tips
     print("Tips:")
     for tip in parsed_data["Tips"]:
         print("- " + tip)
 
 
-#------------LETS START WITH THE ACTUAL WORK! :)-------------------
-#recognize_from_microphone()
-#print("Lets start with the Pre-Processing!")
-#pre_processing()
-<<<<<<< HEAD
-#add_speech_to_json(speechdata, masterjson)
+# ------------LETS START WITH THE ACTUAL WORK! :)-------------------
+recognize_from_microphone()
+print("Lets start with the Pre-Processing!")
+pre_processing()
+add_speech_to_json(speechdata, masterjson)
 print("Unserinput added to masterjson")
 talk_to_chatgpt(masterjson)
 add_answ_chatgpt_masterjson(answ_chatgpt)
 print("CGPTinput added to masterjson")
 #tkinter.messagebox.askquestion(title=None, message=answ_chatgpt)
 doing_some_math()
-=======
-#print("After Pre Processing")
-#add_speech_to_json(speechdata, masterjson)
-#print("Lets go to Buddy ChatGPT!)")
-#talk_to_chatgpt(masterjson)
-#print("And CLean Up a little")
-#add_answ_chatgpt_masterjson(answ_chatgpt)
-before_math(answ_chatgpt)
-doing_some_math(masterjson)
->>>>>>> bc32a54439c5fa8cbb87b706e76257209e155bdf
