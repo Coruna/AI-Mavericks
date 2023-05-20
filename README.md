@@ -15,7 +15,7 @@ An example can be found under main_application → main.py
 
 ## Authors and acknowledgment
 
-This project was made possible through the collaborative efforts of six individuals. Fatima Maya, Pia, and Thi Thanh Hoa Nguyen contributed to the project's programming aspect, utilizing their coding and software development expertise to create a smooth user experience. Anke Lederer, Tetiana Ursulova, and Lena played a vital role in the conceptualization and development of the project, bringing their unique perspectives and ideas to the table.
+This project was made possible through the collaborative efforts of six individuals. Fatima Maya, Pia Schliefke, and Thi Thanh Hoa Nguyen contributed to the project's programming aspect, utilizing their coding and software development expertise to create a smooth user experience. Anke Lederer, Tetiana Ursulova, and Lena Baum played a vital role in the conceptualization and development of the project, bringing their unique perspectives and ideas to the table.
 
 Additionally, we would like to acknowledge the support provided by TeamViewer in Bremen, Germany for providing us with the necessary technologies for this project.
 
