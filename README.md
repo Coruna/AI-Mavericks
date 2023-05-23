@@ -1,4 +1,4 @@
-# Smart Customer Support Mentor
+# Smart IT Support Mentor
 
 This project aims to improve customer support by utilizing Azure OpenAI Service. The objective of this project is to provide insights into the areas where the employee can improve their performance and offer tips on how they can do so. By doing this, the employee can enhance their skills, and ultimately improve the customer's experience.
 
